@@ -12,32 +12,69 @@ class Body {
     xspeed = tempXspeed;   
   }
 
-  void display() {
+  void displayCar() {
     rectMode(CENTER);
     fill(c);
     rect(xpos,ypos,30,10);
   }
-
+  void displayLongCar() {
+    rectMode(CENTER);
+    fill(c);
+    rect(xpos,ypos,50,10);
+  }
+  void displayRain() {
+    rectMode(CENTER);
+    fill(c);
+    line(xpos, ypos, xpos+10, ypos+10);;
+  }
+  /*
+    30. start again from the bottom left corner of the pic frame
+  */
   void moveEast() {
     xpos = xpos + xspeed;
-    if (xpos > width){ // if it reaches the side
-      xpos = 0; // move back to the beginning = set xpos back to 0
+    if (xpos > width){
+      xpos = 0; // 30
     }
   }
-
+  /*
+    20. if it reaches the left side of the pic frame
+    25. start again from the right side of the pic frame
+  */
   void moveWest() {
     xpos = xpos - xspeed;
-    if (xpos <= 0){ // if it reaches the left side
-      xpos = width; // move back to the right side = set xpos back to "width"
+    if (xpos <= 0){ // 20
+      xpos = width; // 25
+    }
+  }
+  /*
+    20. when the body reaches the right side of the pic frame
+    25. the car will start from any point of the lower pic frame
+    30. the body will always start moving from the bottom of the frame pic
+  */
+  void moveNorthEast(){
+    xpos = xpos + 3;
+    ypos = ypos-xspeed;
+    if (xpos > width){ // 20
+      xpos = random(-width/2, width/2); // 25
+      ypos = width; // 30
     }
   }
 
-  void moveNorthEast(){
-    xpos = xpos + xspeed;
-    ypos = ypos+3;
-    if (xpos > width){ // if it reaches the left side
-      xpos = 0; // move back to the right side = set xpos back to "width"
-      ypos = 0;
+  /*
+    25. if the droplet flies out beyond the pic fame
+    30. the point where droplet will fall from is 
+        anywhere from -width, to +width
+        so that the droplets will fall through
+        every part of the picture
+    35. the droplets will always fall from the top
+        of the picture frame
+  */
+  void moveSouthEast(){
+    xpos = xpos + 15;
+    ypos = ypos + 15;
+    if (xpos > width){ // 25
+      xpos = random(-width, width); // 30
+      ypos = 0; // 35
     }
   }
   
@@ -53,6 +90,10 @@ Body Droplet1;
 Body Droplet2;
 Body Droplet3;
 Body Droplet4;
+Body Droplet5;
+Body Droplet6;
+Body Droplet7;
+Body Droplet8;
 
 void setup()  {   
 
@@ -72,37 +113,54 @@ void setup()  {
   Toyota = new Body(blue, 2,150,moveSlow); 
   Ferrari = new Body(red, 50,100,moveFast); 
   Ford = new Body(green, width, 180, moveVFast);
-  Volvo = new Body(black, 180, 2, moveFast);
+  Volvo = new Body(black, 0, 0, moveFast);
+
   Droplet1 = new Body(aqua, 0, 10, moveFast);
   Droplet2 = new Body(aqua, 50, 20, moveFast);
   Droplet3 = new Body(aqua, 100, 30, moveFast);
   Droplet4 = new Body(aqua, 150, 40, moveFast);
+  Droplet5 = new Body(aqua, 0, 10, moveFast);
+  Droplet6 = new Body(aqua, 50, 20, moveFast);
+  Droplet7 = new Body(aqua, 100, 30, moveFast);
+  Droplet8 = new Body(aqua, 150, 40, moveFast);
 }
 
 void draw()  {    
   background(255);  
   // Step 3. Call methods on the object. 
   Toyota.moveEast();   
-  Toyota.display(); 
+  Toyota.displayLongCar(); 
 
   Ferrari.moveEast();
-  Ferrari.display();
+  Ferrari.displayCar();
 
   Ford.moveWest();
-  Ford.display(); 
+  Ford.displayCar(); 
 
   Volvo.moveNorthEast();
-  Volvo.display();
+  Volvo.displayCar();
 
-  Droplet1.fall();
-  Droplet1.display();
+  Droplet1.moveSouthEast();
+  Droplet1.displayRain();
 
-  Droplet2.fall();
-  Droplet2.display();
+  Droplet2.moveSouthEast();
+  Droplet2.displayRain();
 
-  Droplet3.fall();
-  Droplet3.display();
+  Droplet3.moveSouthEast();
+  Droplet3.displayRain();
 
-  Droplet4.fall();
-  Droplet4.display();
+  Droplet4.moveSouthEast();
+  Droplet4.displayRain();
+
+  Droplet5.moveSouthEast();
+  Droplet5.displayRain();
+
+  Droplet6.moveSouthEast();
+  Droplet6.displayRain();
+
+  Droplet7.moveSouthEast();
+  Droplet7.displayRain();
+
+  Droplet8.moveSouthEast();
+  Droplet8.displayRain();
 }   
