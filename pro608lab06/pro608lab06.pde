@@ -1,4 +1,4 @@
-// Toyota
+// Traffic in the rain
 class Body {
   color c; // color black
   float xpos; // x axis loc
@@ -106,3 +106,4 @@ void draw()  {
   Droplet4.fall();
   Droplet4.display();
 }   
+
