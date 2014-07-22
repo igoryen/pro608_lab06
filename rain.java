@@ -43,22 +43,6 @@ class Car {
   
 }
 
-class Rain(){
-  float xloc; // x axis loc
-  float yloc; // y axis loc
-  float xvelocity; // refresh rate? ms?
-
-  Rain(float tempXpos, float tempYpos, float tempXspeed){
-    xloc = tempXpos;   
-    yloc = tempYpos;   
-    xvelocity = tempXspeed; 
-  }
-  void fall(){
-    xloc = xloc + xvelocity;
-    yloc = yloc + 1;
-  }
-}
-
 
 // Step 1. Declare an object.
 Car Toyota;
